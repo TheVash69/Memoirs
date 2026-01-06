@@ -1,0 +1,225 @@
+.videos-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.videos-title {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+  text-shadow: 
+    0 0 10px rgba(236, 72, 153, 0.8),
+    0 0 20px rgba(236, 72, 153, 0.6),
+    0 0 30px rgba(236, 72, 153, 0.4),
+    0 0 40px rgba(236, 72, 153, 0.3),
+    0 0 60px rgba(236, 72, 153, 0.2);
+  animation: videoTitleGlow 3s ease-in-out infinite;
+  letter-spacing: 2px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.videos-title:hover {
+  transform: scale(1.05);
+}
+
+@keyframes videoTitleGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(236, 72, 153, 0.8),
+      0 0 20px rgba(236, 72, 153, 0.6),
+      0 0 30px rgba(236, 72, 153, 0.4),
+      0 0 40px rgba(236, 72, 153, 0.3),
+      0 0 60px rgba(236, 72, 153, 0.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px rgba(236, 72, 153, 1),
+      0 0 30px rgba(236, 72, 153, 0.8),
+      0 0 45px rgba(236, 72, 153, 0.6),
+      0 0 60px rgba(236, 72, 153, 0.4),
+      0 0 80px rgba(236, 72, 153, 0.3);
+  }
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.video-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  aspect-ratio: 16/9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #000;
+}
+
+.video-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 8px 15px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(236, 72, 153, 0.3);
+}
+
+.video-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  backdrop-filter: blur(5px);
+  box-shadow: 
+    0 0 20px rgba(236, 72, 153, 0.6),
+    0 0 40px rgba(236, 72, 153, 0.4);
+  transition: all 0.3s ease;
+  animation: playPulse 2s ease-in-out infinite;
+}
+
+@keyframes playPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(236, 72, 153, 0.6),
+      0 0 40px rgba(236, 72, 153, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(236, 72, 153, 0.8),
+      0 0 50px rgba(236, 72, 153, 0.6);
+  }
+}
+
+.play-overlay svg {
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
+}
+
+.video-item:hover .play-overlay {
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 
+    0 0 35px rgba(236, 72, 153, 0.9),
+    0 0 60px rgba(236, 72, 153, 0.7);
+}
+
+/* Video Modal styles */
+.video-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.video-modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.video-modal-content video {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 
+    0 0 40px rgba(236, 72, 153, 0.4),
+    0 0 80px rgba(236, 72, 153, 0.2);
+}
+
+.close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #ec4899;
+}
+
+.video-name {
+  color: #fff;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .videos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .videos-title {
+    font-size: 2rem;
+  }
+
+  .video-modal-content {
+    max-width: 95%;
+  }
+
+  .play-overlay {
+    width: 60px;
+    height: 60px;
+  }
+
+  .play-overlay svg {
+    width: 28px;
+    height: 28px;
+  }
+}

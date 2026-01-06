@@ -1,0 +1,55 @@
+.App {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Keep the left menu visible on desktop and let it be off-canvas on mobile (LeftMenu.css handles that) */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* background sits behind content */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url(./assets/images/bg2.jpg) no-repeat center;
+  background-size: cover;
+  z-index: -1;
+}
+
+/* On small screens stack app vertically so header/hamburger and content are readable */
+@media (max-width: 900px) {
+  .App {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .content {
+    padding: 16px;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .background {
+    background-position: center top;
+    filter: blur(0.2px);
+  }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

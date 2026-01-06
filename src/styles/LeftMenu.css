@@ -1,0 +1,163 @@
+/* Base left menu (desktop) */
+.LeftMenu {
+  z-index: 1;
+  width: 320px;
+  height: 100%;
+  min-height: 100vh;
+  background-color: rgba(75, 75, 75, 0.451);
+  backdrop-filter: blur(5px);
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 30px;
+  overflow: hidden;
+  transition: all 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-sizing: border-box;
+}
+
+.LeftMenu .LogoContainer {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.LeftMenu .LogoContainer h2 {
+  font-size: 25px;
+  margin-right: 55px;
+}
+
+/* Navigation Menu Styles */
+.menu-nav {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: #c3c3c3;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.22s ease;
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: #0072d0;
+  border-radius: 10px 0 0 10px;
+  transition: width 0.22s ease;
+}
+
+.menu-item:hover {
+  background: rgba(0, 161, 198, 0.06);
+  color: #0072d0;
+}
+
+.menu-item:hover::before {
+  width: 5px;
+}
+
+.menu-item.active {
+  background: rgba(0, 161, 198, 0.12);
+  color: #0072d0;
+}
+.menu-item.active::before { width: 5px; }
+
+.menu-icon { font-size: 24px; margin-right: 15px; display: flex; align-items: center; justify-content: center; min-width: 24px; width: 28px; height: 28px; }
+.menu-text { font-weight: 600; }
+
+.App-Logo { width: 50px; height: 50px; }
+
+/* Misc sections hidden on mobile */
+.playlistContainer, .TrackList { display: block; }
+
+/* ------------------------------
+   Hamburger + off-canvas (mobile)
+   ------------------------------ */
+
+/* Hamburger button (hidden on desktop) */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1400;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.45);
+  border: none;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: #fff;
+  margin: 4px 0;
+  width: 22px;
+  transition: transform .22s ease, opacity .22s ease;
+}
+.hamburger.is-open span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2){ opacity: 0; }
+.hamburger.is-open span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+
+/* overlay (behind the menu) */
+.LeftMenu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  background: rgba(0,0,0,0.35);
+}
+
+/* Mobile: transform left menu off-canvas and show hamburger */
+@media screen and (max-width: 850px) {
+  .hamburger { display: flex; }
+
+  /* hide desktop left menu visually (we'll show off-canvas version) */
+  .LeftMenu {
+    position: fixed;
+    left: -120%;
+    top: 0;
+    height: 100%;
+    width: 320px;
+    transition: left 0.28s cubic-bezier(.2,.9,.3,1), transform 0.28s;
+    z-index: 1350;
+    background-color: rgba(0, 34, 70, 0.603);
+    padding: 12px;
+    overflow-y: auto;
+    border-radius: 0;
+  }
+
+  /* when open, slide in and look like a floating panel */
+  .LeftMenu.mobileOpen {
+    left: 12px;
+    top: 72px;
+    bottom: 12px;
+    width: calc(100% - 24px);
+    max-width: 420px;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(0, 81, 168, 0.522);
+  }
+
+  /* simplify menu items on small screens */
+  .menu-item { padding: 12px 14px; font-size: 18px; }
+  .LeftMenu .LogoContainer h2 { font-size: 20px; margin-right: 12px; }
+  .App-Logo { width: 42px; height: 42px; }
+  .playlistContainer, .TrackList { display: none; }
+}
