@@ -23,3 +23,20 @@
     object-fit: cover;
     filter: grayscale(100);
 }
+
+
+h1{
+    color: rgb(1, 118, 220);
+    text-align: center;
+    padding-top: 2vh;
+    font-family: 'Sacramento', cursive;
+    font-size: 10vh;
+}
+p{
+    color: rgb(0, 66, 100);
+    text-align: center;
+    padding: 2vh 10vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 4vh;
+}

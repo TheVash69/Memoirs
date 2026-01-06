@@ -55,7 +55,7 @@ function LeftMenu() {
             <span className="menu-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
             </span>
-            <span className="menu-text">Home</span>
+            <span className="menu-text">Wish</span>
           </Link>
 
           <Link to="/gallery" onClick={() => setOpen(false)} className={`menu-item ${location.pathname === '/gallery' ? 'active' : ''}`}>
